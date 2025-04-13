@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
@@ -114,7 +113,7 @@ class MatrixGestureDetectorState extends State<MatrixGestureDetector> {
   @override
   Widget build(BuildContext context) {
     Widget child =
-    widget.clipChild ? ClipRect(child: widget.child) : widget.child;
+        widget.clipChild ? ClipRect(child: widget.child) : widget.child;
     return GestureDetector(
       behavior: widget.behavior,
       onScaleStart: onScaleStart,

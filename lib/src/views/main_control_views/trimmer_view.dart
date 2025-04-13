@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_story_editor/src/models/simple_sketecher.dart';
 import 'package:flutter_story_editor/src/models/stroke.dart';
 import 'package:flutter_story_editor/src/theme/style.dart';
+import 'package:video_player/video_player.dart';
 
 import 'package:video_trimmer/video_trimmer.dart';
 
@@ -12,33 +13,37 @@ class TrimmerView extends StatefulWidget {
   final File file; // File to be trimmed.
   final int pageIndex; // Index of the current page in the page controller.
   final PageController pageController; // Controller for page navigation.
-  final Function(File) onTrimCompleted; // Callback function after trim is completed.
+  final Function(File)
+      onTrimCompleted; // Callback function after trim is completed.
   final bool? trimOnAdjust; // If true, trims the video as adjustments are made.
-  final List<Stroke> lines; // List of drawing strokes to be displayed over the video.
+  final List<Stroke>
+      lines; // List of drawing strokes to be displayed over the video.
 
   // Constructor for initializing TrimmerView with required parameters.
-  const TrimmerView({
-    super.key,
-    required this.file,
-    required this.pageIndex,
-    required this.pageController,
-    required this.onTrimCompleted,
-    this.trimOnAdjust = false,
-    required this.lines
-  });
+  const TrimmerView(
+      {super.key,
+      required this.file,
+      required this.pageIndex,
+      required this.pageController,
+      required this.onTrimCompleted,
+      this.trimOnAdjust = false,
+      required this.lines});
 
   @override
   TrimmerViewState createState() => TrimmerViewState();
 }
 
 // State class for TrimmerView, handling video loading, trimming, and UI interactions.
-class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientMixin {
+class TrimmerViewState extends State<TrimmerView>
+    with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true; // Ensures state is kept when swiping between tabs.
+  bool get wantKeepAlive =>
+      true; // Ensures state is kept when swiping between tabs.
 
   double _startValue = 0.0; // Start position of the trim.
   double _endValue = 0.0; // End position of the trim.
-  final Trimmer _trimmer = Trimmer(); // Trimmer instance for handling video operations.
+  final Trimmer _trimmer =
+      Trimmer(); // Trimmer instance for handling video operations.
 
   bool _isPlaying = false; // Indicates if the video is currently playing.
   bool _progressVisibility = false; // Shows or hides the progress indicator.
@@ -53,12 +58,15 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
     String? value;
 
     // Perform the trim operation and handle the result.
-    await _trimmer.saveTrimmedVideo(
-        startValue: _startValue,
-        endValue: _endValue,
-        onSave: (value) {
-          widget.onTrimCompleted(File(value!)); // Callback with the new file.
-        }).then((value) {
+    await _trimmer
+        .saveTrimmedVideo(
+            startValue: _startValue,
+            endValue: _endValue,
+            onSave: (value) {
+              widget
+                  .onTrimCompleted(File(value!)); // Callback with the new file.
+            })
+        .then((value) {
       setState(() {
         _progressVisibility = false; // Hide progress bar.
       });
@@ -114,9 +122,11 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
             child: Stack(
               alignment: Alignment.center,
               children: [
-                VideoViewer(trimmer: _trimmer), // Displays the video being trimmed.
+                VideoPlayer(_trimmer.videoPlayerController!),
+                // VideoViewer(trimmer: _trimmer), // Displays the video being trimmed.
                 CustomPaint(
-                  painter: SimpleSketcher(widget.lines), // Overlays custom sketches on the video.
+                  painter: SimpleSketcher(
+                      widget.lines), // Overlays custom sketches on the video.
                   child: Container(),
                 ),
                 Column(
@@ -128,13 +138,12 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
                       margin: const EdgeInsets.only(top: 80, left: 6, right: 6),
                       child: Center(
                         child: TrimViewer(
-                            editorProperties: const TrimEditorProperties(
-                            ),
+                            editorProperties: const TrimEditorProperties(),
                             areaProperties: const TrimAreaProperties(),
                             trimmer: _trimmer,
-                            viewerHeight: 50.0,
+                            viewerHeight: 40.0,
                             viewerWidth: MediaQuery.of(context).size.width,
-                            maxVideoLength: const Duration(seconds: 30),
+                            maxVideoLength: const Duration(seconds: 45),
                             onChangeStart: (value) => _startValue = value,
                             onChangeEnd: (value) {
                               _endValue = value;
@@ -147,27 +156,27 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
                             }),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    // const SizedBox(height: 10),
                     // Controls for manual save and progress indicator.
-                    if (widget.trimOnAdjust == false)
-                      Column(
-                        children: [
-                          Visibility(
-                            visible: _progressVisibility,
-                            child: const LinearProgressIndicator(
-                              backgroundColor: tealColor,
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: _progressVisibility
-                                ? null
-                                : () async {
-                              _trimVideo();
-                            },
-                            child: const Text("SAVE"),
-                          ),
-                        ],
-                      )
+                    // if (widget.trimOnAdjust == false)
+                    //   Column(
+                    //     children: [
+                    //       Visibility(
+                    //         visible: _progressVisibility,
+                    //         child: const LinearProgressIndicator(
+                    //           backgroundColor: tealColor,
+                    //         ),
+                    //       ),
+                    //       ElevatedButton(
+                    //         onPressed: _progressVisibility
+                    //             ? null
+                    //             : () async {
+                    //                 _trimVideo();
+                    //               },
+                    //         child: const Text("SAVE"),
+                    //       ),
+                    //     ],
+                    //   )
                   ],
                 ),
 
@@ -175,11 +184,22 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
                 TextButton(
                   child: _isPlaying
                       ? Container()
-                      : const Icon(
-                    Icons.play_arrow,
-                    size: 80.0,
-                    color: Colors.white,
-                  ),
+                      : Container(
+                          width: 50.0,
+                          height: 50.0,
+                          padding: const EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          alignment: Alignment.center,
+                          // child: const Icon(Icons.pause, size: 50.0, color: Colors.white),
+                          child: const Icon(
+                            Icons.play_arrow,
+                            size: 30.0,
+                            color: Colors.white,
+                          ),
+                        ),
                   onPressed: () async {
                     await _trimmer.videoPlaybackControl(
                       startValue: _startValue,
@@ -192,8 +212,6 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
                     }
                   },
                 ),
-
-
               ],
             ),
           ),
@@ -202,5 +220,3 @@ class TrimmerViewState extends State<TrimmerView> with AutomaticKeepAliveClientM
     );
   }
 }
-
-

@@ -13,11 +13,16 @@ import 'package:perfect_freehand/perfect_freehand.dart';
 
 class ThumbnailView extends StatefulWidget {
   final List<File> selectedFiles; // List of files selected for editing.
-  final int currentPageIndex; // Current page index to indicate the selected thumbnail.
-  final Map<File, Uint8List?>? thumbnails; // Optional map for storing thumbnails of video files.
-  final List<List<double>>? selectedFilters; // Optional list for storing filters applied to each thumbnail.
-  final Function(int) onThumbnailTapListener; // Callback function to handle thumbnail taps.
-  final FlutterStoryEditorController controller; // Controller to manage editing state and interactions.
+  final int
+      currentPageIndex; // Current page index to indicate the selected thumbnail.
+  final Map<File, Uint8List?>?
+      thumbnails; // Optional map for storing thumbnails of video files.
+  final List<List<double>>?
+      selectedFilters; // Optional list for storing filters applied to each thumbnail.
+  final Function(int)
+      onThumbnailTapListener; // Callback function to handle thumbnail taps.
+  final FlutterStoryEditorController
+      controller; // Controller to manage editing state and interactions.
 
   const ThumbnailView({
     super.key,
@@ -73,10 +78,13 @@ class _ThumbnailViewState extends State<ThumbnailView> {
 
 class ThumbnailViewItem extends StatefulWidget {
   final File image; // File for which the thumbnail is displayed.
-  final FlutterStoryEditorController controller; // Controller to manage editing state and interactions.
+  final FlutterStoryEditorController
+      controller; // Controller to manage editing state and interactions.
   final int index; // Index of the thumbnail in the list.
-  final Map<File, Uint8List?>? thumbnails; // Optional map for storing thumbnails of video files.
-  final List<List<double>>? selectedFilters; // Optional list for storing filters applied to each thumbnail.
+  final Map<File, Uint8List?>?
+      thumbnails; // Optional map for storing thumbnails of video files.
+  final List<List<double>>?
+      selectedFilters; // Optional list for storing filters applied to each thumbnail.
   final List<File>? selectedFiles; // Optional list of files being edited.
   const ThumbnailViewItem(
       {super.key,
@@ -92,11 +100,8 @@ class ThumbnailViewItem extends StatefulWidget {
 }
 
 class _ThumbnailViewItemState extends State<ThumbnailViewItem> {
-
   @override
   Widget build(BuildContext context) {
-
-
     double scaleFactor = min(
       50.0 / MediaQuery.of(context).size.width,
       50.0 / MediaQuery.of(context).size.height,
@@ -105,21 +110,14 @@ class _ThumbnailViewItemState extends State<ThumbnailViewItem> {
     return ValueListenableBuilder<List<List<Stroke>>>(
       valueListenable: widget.controller.uiEditableFileLinesNotifier,
       builder: (BuildContext context, List<List<Stroke>> lines, Widget? child) {
-
-
         List<Stroke> scaledLines = lines[widget.index].map((line) {
-
-
-
           return Stroke(
             line.points.map((point) {
-              return PointVector(
-                  point.x * scaleFactor * 1.8, point.y * scaleFactor * 0.9, point.pressure);
+              return PointVector(point.x * scaleFactor * 1.8,
+                  point.y * scaleFactor * 0.9, point.pressure);
             }).toList(),
             line.color,
-            StrokeOptions(
-              size: 1
-            ),
+            StrokeOptions(size: 1),
           );
         }).toList();
 
@@ -140,7 +138,6 @@ class _ThumbnailViewItemState extends State<ThumbnailViewItem> {
                         ),
                       ),
                       CustomPaint(
-
                         painter: SimpleSketcher(scaledLines),
                         child: Container(),
                       )
@@ -169,7 +166,9 @@ class _ThumbnailViewItemState extends State<ThumbnailViewItem> {
                 ),
                 CustomPaint(
                   size: Size(
-                    50.0 * MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
+                    50.0 *
+                        MediaQuery.of(context).size.width /
+                        MediaQuery.of(context).size.height,
                     50.0,
                   ),
                   painter: SimpleSketcher(scaledLines),

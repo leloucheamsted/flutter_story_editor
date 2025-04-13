@@ -45,16 +45,15 @@ class StrokeOptions {
 
   StrokeOptions(
       {this.size = 3,
-        this.thinning = 0.2,
-        this.smoothing = 0.5,
-        this.streamline = 0.5,
-        this.taperStart = 0.0,
-        this.capStart = true,
-        this.taperEnd = 0.0,
-        this.capEnd = true,
-        this.simulatePressure = true,
-        this.isComplete = false,
-        this.color = Colors.white,
-        this.strokeType = StrokeType.pen
-      });
+      this.thinning = 0.2,
+      this.smoothing = 0.5,
+      this.streamline = 0.5,
+      this.taperStart = 0.0,
+      this.capStart = true,
+      this.taperEnd = 0.0,
+      this.capEnd = true,
+      this.simulatePressure = true,
+      this.isComplete = false,
+      this.color = Colors.white,
+      this.strokeType = StrokeType.pen});
 }

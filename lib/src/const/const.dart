@@ -1,14 +1,14 @@
-
-
-
-
 import 'filters.dart';
 
 class Consts {
-
-
-  static List<String> filterNames = ["None", "Pop", "B&W", "Cool", "Chrome", "Film"];
-
+  static List<String> filterNames = [
+    "None",
+    "Pop",
+    "B&W",
+    "Cool",
+    "Chrome",
+    "Film"
+  ];
 
   static List<List<double>> filters = [
     noFiler,
@@ -47,7 +47,6 @@ class Consts {
     '25_Cuppy_battery.webp',
     'tray_Cuppy.png',
   ];
-
 
   static List<String> emojies = [
     'e1511.png',
@@ -241,7 +240,5 @@ class Consts {
     'e1822.png',
     'e1823.png',
     'e1824.png',
-
   ];
-
 }

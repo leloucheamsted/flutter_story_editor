@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_story_editor/src/controller/controller.dart';
 import 'package:flutter_story_editor/src/enums/story_editing_modes.dart';
@@ -13,9 +12,15 @@ class StickerTopView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        GestureDetector(onTap: () {
-          controller.setStoryEditingModeSelected = StoryEditingModes.none;
-        },child: const Icon(Icons.arrow_back, size: 25, color: Colors.white,)),
+        GestureDetector(
+            onTap: () {
+              controller.setStoryEditingModeSelected = StoryEditingModes.none;
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              size: 25,
+              color: Colors.white,
+            )),
         Container(
           width: 40,
           height: 40,
@@ -24,7 +29,10 @@ class StickerTopView extends StatelessWidget {
             color: tealColor,
           ),
           child: const Center(
-            child: Icon(Icons.emoji_emotions_outlined, color: Colors.white,),
+            child: Icon(
+              Icons.emoji_emotions_outlined,
+              color: Colors.white,
+            ),
           ),
         )
       ],

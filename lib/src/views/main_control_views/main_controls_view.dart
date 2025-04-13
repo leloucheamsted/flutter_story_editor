@@ -19,57 +19,69 @@ import 'thumbnail_view.dart';
 import 'top_view.dart';
 
 class MainControlsView extends StatefulWidget {
-  final List<File>? selectedFiles; // Optional list of media files selected for editing.
+  final List<File>?
+      selectedFiles; // Optional list of media files selected for editing.
   final VoidCallback? onSaveClickListener; // Optional callback for save action.
-  final TextEditingController? captionController; // Optional controller for caption text.
-  final FlutterStoryEditorController controller; // Controller for managing editor states and interactions.
-  final List<File> uiViewEditableFiles; // List of editable media files for the UI.
-  final List<List<double>> selectedFilters; // List of filters applied to each media file.
-  final List<List<DraggableTextWidget>> textList; // Lists of draggable text widgets for each page.
-  final List<List<DraggableStickerWidget>> stickerList; // Lists of draggable sticker widgets for each page.
+  final TextEditingController?
+      captionController; // Optional controller for caption text.
+  final FlutterStoryEditorController
+      controller; // Controller for managing editor states and interactions.
+  final List<File>
+      uiViewEditableFiles; // List of editable media files for the UI.
+  final List<List<double>>
+      selectedFilters; // List of filters applied to each media file.
+  final List<List<DraggableTextWidget>>
+      textList; // Lists of draggable text widgets for each page.
+  final List<List<DraggableStickerWidget>>
+      stickerList; // Lists of draggable sticker widgets for each page.
   final Function(List<double>) onFilterChange; // Callback for changing filters.
   final Function(File) onImageCrop; // Callback for cropping images.
   final VoidCallback onUndoClickListener; // Callback for undo actions.
-  final VoidCallback onPaintClickListener; // Callback for activating paint mode.
+  final VoidCallback
+      onPaintClickListener; // Callback for activating paint mode.
   final VoidCallback onTextClickListener; // Callback for activating text mode.
-  final VoidCallback onStickersClickListener; // Callback for activating stickers mode.
-  final PageController pageController; // Controller for managing page transitions.
+  final VoidCallback
+      onStickersClickListener; // Callback for activating stickers mode.
+  final PageController
+      pageController; // Controller for managing page transitions.
   final int currentPageIndex; // Index of the current page in the editor.
   final List<Stroke> lines; // List of stroke actions for drawing.
   final bool isSaving; // Flag to indicate if a save operation is in progress.
   final bool isFocused; // Flag to check if the keyboard is focused.
-  final FocusNode? captionFocusNode; // Optional focus node for the caption input.
+  final FocusNode?
+      captionFocusNode; // Optional focus node for the caption input.
 
-
-  const MainControlsView(
-      {super.key,
-      this.selectedFiles,
-      this.onSaveClickListener,
-      this.captionController,
-      required this.controller,
-      required this.isFocused,
-      required this.uiViewEditableFiles,
-      required this.selectedFilters,
-      required this.onFilterChange,
-      required this.onImageCrop,
-      required this.onUndoClickListener,
-      required this.pageController,
-      required this.currentPageIndex,
-      required this.onPaintClickListener,
-      required this.onTextClickListener,
-      required this.lines,
-      required this.isSaving,
-        required this.textList,
-        this.captionFocusNode,
-        required this.onStickersClickListener, required this.stickerList,
-       });
+  const MainControlsView({
+    super.key,
+    this.selectedFiles,
+    this.onSaveClickListener,
+    this.captionController,
+    required this.controller,
+    required this.isFocused,
+    required this.uiViewEditableFiles,
+    required this.selectedFilters,
+    required this.onFilterChange,
+    required this.onImageCrop,
+    required this.onUndoClickListener,
+    required this.pageController,
+    required this.currentPageIndex,
+    required this.onPaintClickListener,
+    required this.onTextClickListener,
+    required this.lines,
+    required this.isSaving,
+    required this.textList,
+    this.captionFocusNode,
+    required this.onStickersClickListener,
+    required this.stickerList,
+  });
 
   @override
   State<MainControlsView> createState() => _MainControlsViewState();
 }
 
 class _MainControlsViewState extends State<MainControlsView> {
-  final Map<File, Uint8List?> _thumbnails = {}; // Cache for storing generated thumbnails for video files.
+  final Map<File, Uint8List?> _thumbnails =
+      {}; // Cache for storing generated thumbnails for video files.
 
   // Variables for tracking original files before modifications.
   List<File>? originalFiles;
@@ -126,6 +138,7 @@ class _MainControlsViewState extends State<MainControlsView> {
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -183,31 +196,31 @@ class _MainControlsViewState extends State<MainControlsView> {
           Expanded(
             child: Container(),
           ),
-          if(widget.isFocused == false)
+          if (widget.isFocused == false)
             isVideo(widget.selectedFiles![widget.currentPageIndex])
-              ? Container()
-              : FilterTextView(controller: widget.controller),
+                ? Container()
+                : FilterTextView(controller: widget.controller),
           const SizedBox(
             height: 5,
           ),
           Column(
             children: [
-              if(widget.isFocused == false)
+              if (widget.isFocused == false)
                 ThumbnailView(
-                controller: widget.controller,
-                onThumbnailTapListener: (thumbnailItemIndex) {
-                  widget.pageController.jumpToPage(thumbnailItemIndex);
-                },
-                currentPageIndex: widget.currentPageIndex,
-                thumbnails: _thumbnails,
-                selectedFiles: widget.uiViewEditableFiles,
-                selectedFilters: widget.selectedFilters,
-              ),
+                  controller: widget.controller,
+                  onThumbnailTapListener: (thumbnailItemIndex) {
+                    widget.pageController.jumpToPage(thumbnailItemIndex);
+                  },
+                  currentPageIndex: widget.currentPageIndex,
+                  thumbnails: _thumbnails,
+                  selectedFiles: widget.uiViewEditableFiles,
+                  selectedFilters: widget.selectedFilters,
+                ),
               const SizedBox(
                 height: 10,
               ),
-
-              if (widget.controller.editingModeSelected == StoryEditingModes.filters)
+              if (widget.controller.editingModeSelected ==
+                  StoryEditingModes.filters)
                 FiltersView(
                   onFilterChange: (filter) {
                     widget.onFilterChange(filter);
@@ -216,8 +229,7 @@ class _MainControlsViewState extends State<MainControlsView> {
                   currentPageIndex: widget.currentPageIndex,
                   selectedFiles: originalFiles,
                 )
-              else
-                if(widget.isFocused == false)
+              else if (widget.isFocused == false)
                 CaptionView(
                   focusNode: widget.captionFocusNode,
                   isSaving: widget.isSaving,

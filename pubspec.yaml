@@ -29,6 +29,9 @@ dependencies:
   vector_math: ^2.1.4
   font_awesome_flutter: ^10.7.0
   material_design_icons_flutter: ^7.0.7296
+  flutter_svg: ^2.0.17
+  # video_trimmer:
+  #   path: /Users/cabrauleketchanga/Documents/video_trimmer
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +48,7 @@ flutter:
   assets:
     - assets/images/
     - assets/emojies/
+    - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

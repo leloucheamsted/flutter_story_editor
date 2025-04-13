@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -13,16 +12,15 @@ class FlutterStoryEditorExample extends StatefulWidget {
   const FlutterStoryEditorExample({super.key});
 
   @override
-  State<FlutterStoryEditorExample> createState() => _FlutterStoryEditorExampleState();
+  State<FlutterStoryEditorExample> createState() =>
+      _FlutterStoryEditorExampleState();
 }
 
-class _FlutterStoryEditorExampleState extends State<FlutterStoryEditorExample> with SingleTickerProviderStateMixin {
-
+class _FlutterStoryEditorExampleState extends State<FlutterStoryEditorExample>
+    with SingleTickerProviderStateMixin {
   FlutterStoryEditorController controller = FlutterStoryEditorController();
 
   final TextEditingController _captionController = TextEditingController();
-
-
 
   List<File>? _selectedMedia;
 
@@ -47,26 +45,25 @@ class _FlutterStoryEditorExampleState extends State<FlutterStoryEditorExample> w
 
         // Determine the type of each selected file
         for (int i = 0; i < _selectedMedia!.length; i++) {
-          String extension = path.extension(_selectedMedia![i].path)
-              .toLowerCase();
-          if (extension == '.jpg' || extension == '.jpeg' ||
+          String extension =
+              path.extension(_selectedMedia![i].path).toLowerCase();
+          if (extension == '.jpg' ||
+              extension == '.jpeg' ||
               extension == '.png') {
             _mediaTypes![i] = 'image';
-          } else if (extension == '.mp4' || extension == '.mov' ||
+          } else if (extension == '.mp4' ||
+              extension == '.mov' ||
               extension == '.avi') {
             _mediaTypes![i] = 'video';
           }
         }
 
         setState(() {});
-      } else {
-
-      }
+      } else {}
     } catch (e) {
       throw Exception("unable to pick files, please try again");
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -74,48 +71,44 @@ class _FlutterStoryEditorExampleState extends State<FlutterStoryEditorExample> w
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-
           Center(
-            child: IconButton(onPressed: () {
-
-
-              selectMedia().then(
+            child: IconButton(
+                onPressed: () {
+                  selectMedia().then(
                     (value) {
-
-                  if (_selectedMedia != null && _selectedMedia!.isNotEmpty) {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      isDismissible: false,
-                      enableDrag: false,
-                      context: context,
-                      builder: (context) {
-
-                        return FlutterStoryEditor(
-                            controller: controller,
-                            captionController: _captionController,
-                            selectedFiles: _selectedMedia,
-                            onSaveClickListener: (files) {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => ImagesPage(files: files),
-                              //   ),
-                              // );
-                            }
+                      if (_selectedMedia != null &&
+                          _selectedMedia!.isNotEmpty) {
+                        showModalBottomSheet(
+                          isScrollControlled: true,
+                          isDismissible: false,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return FlutterStoryEditor(
+                                controller: controller,
+                                captionController: _captionController,
+                                selectedFiles: _selectedMedia,
+                                onSaveClickListener: (files) {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) => ImagesPage(files: files),
+                                  //   ),
+                                  // );
+                                });
+                          },
                         );
-                      },
-                    );
-                  }
-
+                      }
+                    },
+                  );
                 },
-              );
-            }, icon: const Icon(Icons.upload, size: 50,)),
+                icon: const Icon(
+                  Icons.upload,
+                  size: 50,
+                )),
           ),
-
-
           const SizedBox(height: 10),
           const Text("Pick Files & Play with them")
-
         ],
       ),
     );

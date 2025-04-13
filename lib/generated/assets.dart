@@ -2,9 +2,12 @@
 class Assets {
   Assets._();
 
-  static const String angkorAngkorRegular = 'assets/fonts/angkor/Angkor-Regular.ttf';
-  static const String dancingScriptDancingScriptMedium = 'assets/fonts/dancing_script/DancingScript-Medium.ttf';
-  static const String dancingScriptDancingScriptRegular = 'assets/fonts/dancing_script/DancingScript-Regular.ttf';
+  static const String angkorAngkorRegular =
+      'assets/fonts/angkor/Angkor-Regular.ttf';
+  static const String dancingScriptDancingScriptMedium =
+      'assets/fonts/dancing_script/DancingScript-Medium.ttf';
+  static const String dancingScriptDancingScriptRegular =
+      'assets/fonts/dancing_script/DancingScript-Regular.ttf';
   static const String emojiesE1511 = 'assets/emojies/e1511.png';
   static const String emojiesE1512 = 'assets/emojies/e1512.png';
   static const String emojiesE1513 = 'assets/emojies/e1513.png';
@@ -201,38 +204,56 @@ class Assets {
   static const String images05CuppyCry = 'assets/images/05_Cuppy_cry.webp';
   static const String images06CuppyLove = 'assets/images/06_Cuppy_love.webp';
   static const String images07CuppyHate = 'assets/images/07_Cuppy_hate.webp';
-  static const String images08CuppyLovewithmug = 'assets/images/08_Cuppy_lovewithmug.webp';
-  static const String images09CuppyLovewithcookie = 'assets/images/09_Cuppy_lovewithcookie.webp';
+  static const String images08CuppyLovewithmug =
+      'assets/images/08_Cuppy_lovewithmug.webp';
+  static const String images09CuppyLovewithcookie =
+      'assets/images/09_Cuppy_lovewithcookie.webp';
   static const String images10CuppyHmm = 'assets/images/10_Cuppy_hmm.webp';
   static const String images11CuppyUpset = 'assets/images/11_Cuppy_upset.webp';
   static const String images12CuppyAngry = 'assets/images/12_Cuppy_angry.webp';
-  static const String images13CuppyCurious = 'assets/images/13_Cuppy_curious.webp';
+  static const String images13CuppyCurious =
+      'assets/images/13_Cuppy_curious.webp';
   static const String images14CuppyWeird = 'assets/images/14_Cuppy_weird.webp';
-  static const String images15CuppyBluescreen = 'assets/images/15_Cuppy_bluescreen.webp';
+  static const String images15CuppyBluescreen =
+      'assets/images/15_Cuppy_bluescreen.webp';
   static const String images16CuppyAngry = 'assets/images/16_Cuppy_angry.webp';
   static const String images17CuppyTired = 'assets/images/17_Cuppy_tired.webp';
-  static const String images18CuppyWorkhard = 'assets/images/18_Cuppy_workhard.webp';
+  static const String images18CuppyWorkhard =
+      'assets/images/18_Cuppy_workhard.webp';
   static const String images19CuppyShine = 'assets/images/19_Cuppy_shine.webp';
-  static const String images20CuppyDisgusting = 'assets/images/20_Cuppy_disgusting.webp';
+  static const String images20CuppyDisgusting =
+      'assets/images/20_Cuppy_disgusting.webp';
   static const String images21CuppyHi = 'assets/images/21_Cuppy_hi.webp';
   static const String images22CuppyBye = 'assets/images/22_Cuppy_bye.webp';
-  static const String images23CuppyGreentea = 'assets/images/23_Cuppy_greentea.webp';
+  static const String images23CuppyGreentea =
+      'assets/images/23_Cuppy_greentea.webp';
   static const String images24CuppyPhone = 'assets/images/24_Cuppy_phone.webp';
-  static const String images25CuppyBattery = 'assets/images/25_Cuppy_battery.webp';
+  static const String images25CuppyBattery =
+      'assets/images/25_Cuppy_battery.webp';
   static const String imagesTrayCuppy = 'assets/images/tray_Cuppy.png';
   static const String latoLatoRegular = 'assets/fonts/lato/Lato-Regular.ttf';
   static const String loraLoraMedium = 'assets/fonts/lora/Lora-Medium.ttf';
   static const String loraLoraRegular = 'assets/fonts/lora/Lora-Regular.ttf';
-  static const String madimiOneMadimiOneRegular = 'assets/fonts/madimiOne/MadimiOne-Regular.ttf';
-  static const String merriweatherMerriweatherRegular = 'assets/fonts/merriweather/Merriweather-Regular.ttf';
-  static const String montserratMontserratMedium = 'assets/fonts/montserrat/Montserrat-Medium.ttf';
-  static const String montserratMontserratRegular = 'assets/fonts/montserrat/Montserrat-Regular.ttf';
-  static const String oswaldOswaldMedium = 'assets/fonts/oswald/Oswald-Medium.ttf';
-  static const String oswaldOswaldRegular = 'assets/fonts/oswald/Oswald-Regular.ttf';
-  static const String pacificoPacificoRegular = 'assets/fonts/pacifico/Pacifico-Regular.ttf';
-  static const String ralewayRalewayMedium = 'assets/fonts/raleway/Raleway-Medium.ttf';
-  static const String ralewayRalewayRegular = 'assets/fonts/raleway/Raleway-Regular.ttf';
-  static const String robotoRobotoMedium = 'assets/fonts/roboto/Roboto-Medium.ttf';
-  static const String robotoRobotoRegular = 'assets/fonts/roboto/Roboto-Regular.ttf';
-
+  static const String madimiOneMadimiOneRegular =
+      'assets/fonts/madimiOne/MadimiOne-Regular.ttf';
+  static const String merriweatherMerriweatherRegular =
+      'assets/fonts/merriweather/Merriweather-Regular.ttf';
+  static const String montserratMontserratMedium =
+      'assets/fonts/montserrat/Montserrat-Medium.ttf';
+  static const String montserratMontserratRegular =
+      'assets/fonts/montserrat/Montserrat-Regular.ttf';
+  static const String oswaldOswaldMedium =
+      'assets/fonts/oswald/Oswald-Medium.ttf';
+  static const String oswaldOswaldRegular =
+      'assets/fonts/oswald/Oswald-Regular.ttf';
+  static const String pacificoPacificoRegular =
+      'assets/fonts/pacifico/Pacifico-Regular.ttf';
+  static const String ralewayRalewayMedium =
+      'assets/fonts/raleway/Raleway-Medium.ttf';
+  static const String ralewayRalewayRegular =
+      'assets/fonts/raleway/Raleway-Regular.ttf';
+  static const String robotoRobotoMedium =
+      'assets/fonts/roboto/Roboto-Medium.ttf';
+  static const String robotoRobotoRegular =
+      'assets/fonts/roboto/Roboto-Regular.ttf';
 }

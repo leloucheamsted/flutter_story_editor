@@ -1,11 +1,8 @@
-
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_story_editor/src/const/filters.dart';
 import 'package:flutter_story_editor/src/enums/story_editing_modes.dart';
 import 'package:flutter_story_editor/src/models/stroke.dart';
-
 
 /// A controller class for managing state in a Flutter story editing application.
 ///
@@ -13,13 +10,15 @@ import 'package:flutter_story_editor/src/models/stroke.dart';
 /// selected files, applied filters, and stroke data for the story being edited.
 class FlutterStoryEditorController extends ChangeNotifier {
   // Notifier for the current editing mode.
-  final editingModeNotifier = ValueNotifier<StoryEditingModes>(StoryEditingModes.none);
+  final editingModeNotifier =
+      ValueNotifier<StoryEditingModes>(StoryEditingModes.none);
 
   /// Gets the currently selected editing mode.
   StoryEditingModes get editingModeSelected => editingModeNotifier.value;
 
   /// Sets the editing mode and notifies listeners.
-  set setStoryEditingModeSelected(StoryEditingModes newStoryEditingSelectedMode) {
+  set setStoryEditingModeSelected(
+      StoryEditingModes newStoryEditingSelectedMode) {
     editingModeNotifier.value = newStoryEditingSelectedMode;
     notifyListeners();
   }
@@ -49,10 +48,12 @@ class FlutterStoryEditorController extends ChangeNotifier {
   }
 
   // Notifier for the lines editable on the UI, stored per file.
-  final ValueNotifier<List<List<Stroke>>> uiEditableFileLinesNotifier = ValueNotifier<List<List<Stroke>>>([]);
+  final ValueNotifier<List<List<Stroke>>> uiEditableFileLinesNotifier =
+      ValueNotifier<List<List<Stroke>>>([]);
 
   /// Gets the list of editable lines for all files.
-  List<List<Stroke>> get uiEditableFileLines => uiEditableFileLinesNotifier.value;
+  List<List<Stroke>> get uiEditableFileLines =>
+      uiEditableFileLinesNotifier.value;
 
   /// Sets the lines for a specific file index and notifies listeners.
   void setUiEditableFileLines(int index, List<Stroke> newLines) {
@@ -64,7 +65,8 @@ class FlutterStoryEditorController extends ChangeNotifier {
 
   /// Initializes editable lines for a specified number of files.
   void initializeUiEditableFileLines(int count) {
-    uiEditableFileLinesNotifier.value = List.generate(count, (index) => <Stroke>[]);
+    uiEditableFileLinesNotifier.value =
+        List.generate(count, (index) => <Stroke>[]);
     notifyListeners();
   }
 }

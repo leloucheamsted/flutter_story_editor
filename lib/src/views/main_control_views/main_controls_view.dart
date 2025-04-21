@@ -234,7 +234,11 @@ class _MainControlsViewState extends State<MainControlsView> {
                   focusNode: widget.captionFocusNode,
                   isSaving: widget.isSaving,
                   captionController: widget.captionController!,
-                  onSaveClickListener: widget.onSaveClickListener!,
+                  onSaveClickListener: () => {
+                    widget.onSaveClickListener!(),
+                    print("Save clicked"),
+                    // Navigator.pop(context),
+                  }, // Callback for save action.
                 )
             ],
           ),

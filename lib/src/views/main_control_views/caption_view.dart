@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_story_editor/src/theme/style.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // CaptionView is a StatelessWidget that provides UI for entering captions and initiating save operations.
@@ -22,79 +23,44 @@ class CaptionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Building the widget structure for the caption view.
-    return Column(
+    return Row(
       children: [
-        // Container(
-        //   margin: const EdgeInsets.symmetric(horizontal: 10),
-        //   width: double.infinity,
-        //   height: 50,
-        //   decoration: BoxDecoration(
-        //       borderRadius: BorderRadius.circular(
-        //           25), // Rounded corners for aesthetic appeal.
-        //       color: darkGreenColor), // Background color set to dark green.
-        //   child: TextFormField(
-        //     focusNode: focusNode, // Assigning focus node if provided.
-        //     controller:
-        //         captionController, // Using the provided TextEditingController for text editing.
-        //     style: const TextStyle(fontSize: 18), // Text style customization.
-        //     cursorColor:
-        //         tealColor, // Cursor color set to teal for visual consistency.
-        //     decoration: const InputDecoration(
-        //         border:
-        //             InputBorder.none, // No visual border for the input field.
-        //         prefixIcon: Icon(
-        //           Icons.emoji_emotions_outlined,
-        //           color: Colors.white,
-        //           size: 28,
-        //         ), // Icon for a visual hint at the start of the input field.
-        //         hintText: "Add  caption...", // Placeholder text.
-        //         contentPadding: EdgeInsets.symmetric(
-        //             vertical: 15), // Padding inside the input field.
-        //         hintStyle: TextStyle(color: Colors.white)), // Hint text style.
-        //   ),
-        // ),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment
-                .end, // Aligning children to the start and end of the row.
-            children: [
-              // Container(
-              //   padding:
-              //       const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(
-              //         20), // Rounded corners for the container.
-              //     color: darkGreenColor, // Background color set to dark green.
-              //   ),
-              //   child: const Row(
-              //     children: [
-              //       Icon(
-              //         FontAwesomeIcons.circle,
-              //         color: Colors.white,
-              //       ), // Icon for decorative purposes.
-              //       SizedBox(
-              //         width: 5,
-              //       ),
-              //       Text(
-              //         "Status (Contacts)",
-              //         style: TextStyle(color: Colors.white),
-              //       ) // Text indicating the status.
-              //     ],
-              //   ),
-              // ),
-
-              GestureDetector(
-                onTap:
-                    onSaveClickListener, // Gesture detector to handle tap events on the save button.
-                child: Container(
-                  width: 45,
-                  height: 45,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          25), // Rounded corners for the button.
-                      color: tealColor), // Background color set to teal.
-                  child: Center(
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(7),
+                border: Border.all(
+                  color: const Color(0xFFFFD700),
+                  width: 1,
+                ),
+                color: Colors.black.withOpacity(0.3),
+              ),
+              child: Row(
+                children: [
+                  const SizedBox(width: 5),
+                  Expanded(
+                    child: TextField(
+                      controller: captionController,
+                      cursorColor: tealColor,
+                      focusNode: focusNode,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 14,
+                      ),
+                      decoration: const InputDecoration(
+                        hintText: 'Decription...',
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: onSaveClickListener,
                     child: isSaving
                         ? const SizedBox(
                             width: 20,
@@ -102,18 +68,80 @@ class CaptionView extends StatelessWidget {
                             child: CircularProgressIndicator(
                               color: darkGreenColor,
                             ),
-                          ) // Circular progress indicator when saving.
-                        : const Icon(
-                            Icons.send_outlined,
+                          )
+                        : SvgPicture.asset(
+                            'assets/icons/send.svg',
                             color: Colors.white,
-                          ), // Icon indicating send action.
+                            width: 20,
+                            height: 20,
+                          ),
                   ),
-                ),
+                  const SizedBox(width: 7),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ],
     );
+
+    // Row(
+    //   children: [
+    //     Expanded(
+    //       child: Container(
+    //         margin: const EdgeInsets.symmetric(horizontal: 10),
+    //         width: double.infinity,
+    //         height: 50,
+    //         decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(
+    //                 25), // Rounded corners for aesthetic appeal.
+    //             color: darkGreenColor), // Background color set to dark green.
+    //         child: TextFormField(
+    //           focusNode: focusNode, // Assigning focus node if provided.
+    //           controller:
+    //               captionController, // Using the provided TextEditingController for text editing.
+    //           style: const TextStyle(fontSize: 18), // Text style customization.
+    //           cursorColor:
+    //               tealColor, // Cursor color set to teal for visual consistency.
+    //           decoration: const InputDecoration(
+    //               border:
+    //                   InputBorder.none, // No visual border for the input field.
+    //               // Icon for a visual hint at the start of the input field.
+    //               hintText: "Description", // Placeholder text.
+    //               contentPadding: EdgeInsets.symmetric(
+    //                   vertical: 15), // Padding inside the input field.
+    //               hintStyle:
+    //                   TextStyle(color: Colors.white)), // Hint text style.
+    //         ),
+    //       ),
+    //     ),
+    //     GestureDetector(
+    //       onTap:
+    //           onSaveClickListener, // Gesture detector to handle tap events on the save button.
+    //       child: Container(
+    //         width: 45,
+    //         height: 45,
+    //         decoration: BoxDecoration(
+    //             borderRadius: BorderRadius.circular(
+    //                 25), // Rounded corners for the button.
+    //             color: tealColor), // Background color set to teal.
+    //         child: Center(
+    //           child: isSaving
+    //               ? const SizedBox(
+    //                   width: 20,
+    //                   height: 20,
+    //                   child: CircularProgressIndicator(
+    //                     color: darkGreenColor,
+    //                   ),
+    //                 ) // Circular progress indicator when saving.
+    //               : const Icon(
+    //                   Icons.send_outlined,
+    //                   color: Colors.white,
+    //                 ), // Icon indicating send action.
+    //         ),
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 }

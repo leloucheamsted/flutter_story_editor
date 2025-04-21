@@ -245,8 +245,16 @@ class _FlutterStoryEditorState extends State<FlutterStoryEditor> {
                           if (mode == StoryEditingModes.paint)
                             PaintControlsView(
                               onDoneClickListener: () async {
-                                widget.controller.setStoryEditingModeSelected =
-                                    StoryEditingModes.none;
+                                if (widget.controller.editingModeSelected ==
+                                    StoryEditingModes.paint) {
+                                  widget.controller
+                                          .setStoryEditingModeSelected =
+                                      StoryEditingModes.text;
+                                } else {
+                                  widget.controller
+                                          .setStoryEditingModeSelected =
+                                      StoryEditingModes.filters;
+                                }
 
                                 await generateThumbnail(
                                         uiViewEditableFiles![currentPageIndex])

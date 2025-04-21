@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_story_editor/src/controller/controller.dart';
+import 'package:flutter_story_editor/src/enums/story_editing_modes.dart';
 import 'package:flutter_story_editor/src/models/stroke.dart';
 import 'package:flutter_story_editor/src/theme/style.dart';
 
@@ -37,7 +38,10 @@ class _PaintTopViewState extends State<PaintTopView> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
-                onTap: widget.onDoneClickListener,
+                onTap: () {
+                  widget.controller.setStoryEditingModeSelected =
+                      StoryEditingModes.text;
+                },
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),

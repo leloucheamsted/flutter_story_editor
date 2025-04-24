@@ -7,6 +7,7 @@ import 'package:flutter_story_editor/src/controller/controller.dart';
 import 'package:flutter_story_editor/src/enums/story_editing_modes.dart';
 import 'package:flutter_story_editor/src/models/stroke.dart';
 import 'package:flutter_story_editor/src/utils/utils.dart';
+import 'package:flutter_story_editor/src/views/main_control_views/center_view.dart';
 import 'package:flutter_story_editor/src/views/main_control_views/filters_view.dart';
 import 'package:flutter_story_editor/src/widgets/draggable_sticker_widget.dart';
 import 'package:flutter_story_editor/src/widgets/draggable_text_widget.dart';
@@ -146,10 +147,16 @@ class _MainControlsViewState extends State<MainControlsView> {
       children: [
         for (File file in widget.selectedFiles!)
           if (!(isVideo(file)))
-            Align(
-              alignment: Alignment.topCenter,
-              child: _buildTop(),
+            Positioned(
+              top: (MediaQuery.of(context).size.height / 2) - 150,
+              left: 17,
+              //  alignment: Alignment.topLeft,
+              child: _buildCenter(),
             ),
+        Align(
+          alignment: Alignment.topCenter,
+          child: _buildTop(),
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: _buildBottom(),
@@ -161,6 +168,31 @@ class _MainControlsViewState extends State<MainControlsView> {
   // Function to build the top view of the editor.
   Widget _buildTop() {
     return TopView(
+      stickerList: widget.stickerList,
+      textList: widget.textList,
+      controller: widget.controller,
+      lines: widget.lines,
+      onTextClickListener: () {
+        widget.onTextClickListener();
+      },
+      onStickersClickListener: () {
+        widget.onStickersClickListener();
+      },
+      onPaintClickListener: () {
+        widget.onPaintClickListener();
+      },
+      onUndoClickListener: widget.onUndoClickListener,
+      currentPageIndex: widget.currentPageIndex,
+      selectedFilters: widget.selectedFilters,
+      selectedFile: widget.selectedFiles![widget.currentPageIndex],
+      onTapCropListener: () {
+        _cropImage(context);
+      },
+    );
+  }
+
+  Widget _buildCenter() {
+    return CenterView(
       stickerList: widget.stickerList,
       textList: widget.textList,
       controller: widget.controller,
@@ -236,7 +268,7 @@ class _MainControlsViewState extends State<MainControlsView> {
                   captionController: widget.captionController!,
                   onSaveClickListener: () => {
                     widget.onSaveClickListener!(),
-                    print("Save clicked"),
+
                     // Navigator.pop(context),
                   }, // Callback for save action.
                 )

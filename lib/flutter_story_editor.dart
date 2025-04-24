@@ -90,7 +90,7 @@ class _FlutterStoryEditorState extends State<FlutterStoryEditor> {
   void initState() {
     super.initState();
     // Initializes and sets up necessary controllers and listeners.
-
+    widget.controller.setStoryEditingModeSelected = StoryEditingModes.none;
     drawingUndoController.stream.listen(
         (_) => undo(widget.controller.uiEditableFileLines[currentPageIndex]));
 

@@ -45,6 +45,9 @@ class CaptionView extends StatelessWidget {
                       controller: captionController,
                       cursorColor: tealColor,
                       focusNode: focusNode,
+                      autocorrect: false,
+                      enableSuggestions: false,
+                      textInputAction: TextInputAction.done,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -66,7 +69,7 @@ class CaptionView extends StatelessWidget {
                             width: 20,
                             height: 20,
                             child: CircularProgressIndicator(
-                              color: darkGreenColor,
+                              color: Colors.white,
                             ),
                           )
                         : SvgPicture.asset(

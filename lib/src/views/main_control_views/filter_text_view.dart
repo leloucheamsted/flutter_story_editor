@@ -9,23 +9,24 @@ class FilterTextView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedOpacity(
-      duration: const Duration(milliseconds: 200),
-      opacity:
-          controller.editingModeSelected == StoryEditingModes.filters ? 0 : 1,
+    return Opacity(
+      //duration: const Duration(milliseconds: 200),
+      opacity: 1,
       child: AnimatedContainer(
         height: controller.editingModeSelected == StoryEditingModes.filters
-            ? 100
+            ? 50
             : 50, // change height based on showFilters
         duration: const Duration(milliseconds: 300),
-        child: const Column(
+        child: Column(
           children: [
             Icon(
-              Icons.keyboard_arrow_up,
+              controller.editingModeSelected == StoryEditingModes.filters
+                  ? Icons.keyboard_arrow_down
+                  : Icons.keyboard_arrow_up,
               size: 25,
               color: Colors.white,
             ),
-            Text(
+            const Text(
               "Filters",
               style: TextStyle(
                   fontSize: 16,

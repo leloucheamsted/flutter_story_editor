@@ -79,77 +79,77 @@ class _TopViewState extends State<TopView> {
                     color: Colors.white,
                   )),
               // Conditional rendering if the selected file is not a video.
-              if (!isVideo(widget.selectedFile))
-                Row(
-                  children: [
-                    // Undo icon is shown if there are any changes that can be undone.
-                    widget.selectedFilters[widget.currentPageIndex] !=
-                                noFiler ||
-                            widget.lines.isNotEmpty ||
-                            widget
-                                .textList[widget.currentPageIndex].isNotEmpty ||
-                            widget
-                                .stickerList[widget.currentPageIndex].isNotEmpty
-                        ? GestureDetector(
-                            onTap: widget.onUndoClickListener,
-                            child: const Icon(
-                              Icons.undo,
-                              size: 30,
-                              color: Colors.white,
-                            ),
-                          )
-                        : Container(),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    // Crop icon for image editing.
-                    // GestureDetector(
-                    //     onTap: widget.onTapCropListener,
-                    //     child: const Icon(
-                    //       Icons.crop,
-                    //       size: 30,
-                    //       color: Colors.white,
-                    //     )),
-                    // const SizedBox(
-                    //   width: 20,
-                    // ),
-                    // Icon for accessing sticker controls.
-                    GestureDetector(
-                      onTap: widget.onStickersClickListener,
-                      child: SvgPicture.asset(
-                        "assets/icons/sticker.svg",
-                        color: Colors.white,
-                        height: 30,
-                        width: 30,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    // Icon for accessing text controls.
-                    GestureDetector(
-                      onTap: widget.onTextClickListener,
-                      child: SvgPicture.asset(
-                        "assets/icons/text.svg",
-                        color: Colors.white,
-                        height: 30,
-                        width: 30,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    // // Icon for accessing painting controls.
-                    // GestureDetector(
-                    //   onTap: widget.onPaintClickListener,
-                    //   child: const Icon(
-                    //     Icons.edit_outlined,
-                    //     size: 30,
-                    //     color: Colors.white,
-                    //   ),
-                    // ),
-                  ],
-                )
+              // if (!isVideo(widget.selectedFile))
+              //   Row(
+              //     children: [
+              //       // Undo icon is shown if there are any changes that can be undone.
+              //       widget.selectedFilters[widget.currentPageIndex] !=
+              //                   noFiler ||
+              //               widget.lines.isNotEmpty ||
+              //               widget
+              //                   .textList[widget.currentPageIndex].isNotEmpty ||
+              //               widget
+              //                   .stickerList[widget.currentPageIndex].isNotEmpty
+              //           ? GestureDetector(
+              //               onTap: widget.onUndoClickListener,
+              //               child: const Icon(
+              //                 Icons.undo,
+              //                 size: 30,
+              //                 color: Colors.white,
+              //               ),
+              //             )
+              //           : Container(),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       // Crop icon for image editing.
+              //       // GestureDetector(
+              //       //     onTap: widget.onTapCropListener,
+              //       //     child: const Icon(
+              //       //       Icons.crop,
+              //       //       size: 30,
+              //       //       color: Colors.white,
+              //       //     )),
+              //       // const SizedBox(
+              //       //   width: 20,
+              //       // ),
+              //       // Icon for accessing sticker controls.
+              //       GestureDetector(
+              //         onTap: widget.onStickersClickListener,
+              //         child: SvgPicture.asset(
+              //           "assets/icons/sticker.svg",
+              //           color: Colors.white,
+              //           height: 30,
+              //           width: 30,
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       // Icon for accessing text controls.
+              //       GestureDetector(
+              //         onTap: widget.onTextClickListener,
+              //         child: SvgPicture.asset(
+              //           "assets/icons/text.svg",
+              //           color: Colors.white,
+              //           height: 30,
+              //           width: 30,
+              //         ),
+              //       ),
+              //       const SizedBox(
+              //         width: 20,
+              //       ),
+              //       // // Icon for accessing painting controls.
+              //       // GestureDetector(
+              //       //   onTap: widget.onPaintClickListener,
+              //       //   child: const Icon(
+              //       //     Icons.edit_outlined,
+              //       //     size: 30,
+              //       //     color: Colors.white,
+              //       //   ),
+              //       // ),
+              //     ],
+              //   )
             ],
           ),
         ],
